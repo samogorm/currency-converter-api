@@ -1,0 +1,35 @@
+{
+  "name": "currency-converter-api",
+  "version": "1.0.0",
+  "description": "A small NodeJS RESTful api that queries the open souce ExchangeRatesAPI. The main purpose of this custom API is to store the conversion rates on a daily basis in case of the event  of the external API goind down.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samogorm/currency-converter-api.git"
+  },
+  "keywords": [
+    "reactjs",
+    "typescript",
+    "nodejs",
+    "exchangerates",
+    "restfulapi"
+  ],
+  "author": "Samantha O'Gorman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samogorm/currency-converter-api/issues"
+  },
+  "homepage": "https://github.com/samogorm/currency-converter-api#readme",
+  "devDependencies": {
+    "@types/node": "^12.0.10",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}

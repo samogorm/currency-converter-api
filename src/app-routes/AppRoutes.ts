@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.route('/latestexchangerates').get(async(req, res) => {
     let currencyInformationController = new CurrencyInformationController();
-    let data = await currencyInformationController.getLatestExchangeRates('EUR');
-    console.log("The data: ", data);
+    let data = await currencyInformationController.getLatestExchangeRates(req.query.base);
+  
     return res.send(data);
 });
 

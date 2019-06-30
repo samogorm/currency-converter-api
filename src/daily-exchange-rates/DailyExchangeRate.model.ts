@@ -1,5 +1,4 @@
 import DailyExchangeRateSchema from './DailyExchangeRate.schema';
-import { IDailyExchangeRate } from './IDailyExchangeRate.interface'
 
 class DailyExchangeRate {
     getById = () => {

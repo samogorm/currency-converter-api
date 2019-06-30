@@ -1,9 +1,10 @@
 import APIRequestUtil from './../utils/APIRequest.util';
-import DailyExchangeRateModel from './IDailyExchangeRate.model';
+import DailyExchangeRateModel from './DailyExchangeRate.model';
 import {StaticCurrencyInformation} from './../currency-information/StaticCurrencyInformation';
+import CurrencyInformationController from '../currency-information/CurrencyInformation.controller';
 
 class DailyExchangeRateController {
-    currencyInformation = StaticCurrencyInformation;
+    currencyInformation = new CurrencyInformationController();
 
     /**
      * This will iterate over the available currency information
@@ -11,9 +12,11 @@ class DailyExchangeRateController {
      * rates each day.
      */
     storeDailyCurrencyCodes = async() => {
-        await this.currencyInformation.forEach(async currency => {
-            let exchangeRates = await this.getExchangeRatesFromAPI(currency.code);
-            await this.storeExchangeRates(exchangeRates);
+        await Promise.resolve(this.currencyInformation.getCurrencyInformation()).then(values => {
+            values.map(async(value: any) => {
+                let exchangeRates = await this.getExchangeRatesFromAPI(value.code);
+                await this.storeExchangeRates(exchangeRates);
+            })
         });
     }
 

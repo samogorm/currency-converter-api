@@ -4,8 +4,8 @@ import DailyExchangeRateController from './../daily-exchange-rates/DailyExchange
 const router = express.Router();
 
 router.route('/test').get((req, res) => {
-    let dailyExchangeRateController = new DailyExchangeRateController();
-    dailyExchangeRateController.storeDailyCurrencyCodes();
+    let currencyInformationController = new DailyExchangeRateController();
+    currencyInformationController.storeDailyCurrencyCodes();
     return res.send(`Success!`);
 });
 

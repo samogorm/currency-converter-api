@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
+import { ICurrencyInformation } from './ICurrencyInformation.interface';
 
 const CurrencyInformationSchema = new Schema({
     country: String,
@@ -14,4 +13,4 @@ const CurrencyInformationSchema = new Schema({
     }
 });
 
-export default CurrencyInformationSchema;
+export default mongoose.model<ICurrencyInformation>('CurrencyInformation', CurrencyInformationSchema);

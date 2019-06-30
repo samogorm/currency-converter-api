@@ -1,4 +1,4 @@
-import APIRequest from './../utils/APIRequest.util';
+import APIRequestUtil from './../utils/APIRequest.util';
 import DailyExchangeRateModel from './IDailyExchangeRate.model';
 import {StaticCurrencyInformation} from './../currency-information/StaticCurrencyInformation';
 
@@ -21,9 +21,9 @@ class DailyExchangeRateController {
         let url = `${process.env.APP_EXCHANGE_RATE_API_URL}`;
         let params = { base: baseCurrency }
 
-        let apiRequest = new APIRequest();
+        let apiRequest = new APIRequestUtil();
 
-        let data = await apiRequest.get(url, params).then(data => {
+        let data = await apiRequest.get(url, params).then((data: any) => {
             return data;
         });
     

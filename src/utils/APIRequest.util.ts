@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class APIRequest {
+class APIRequestUtil {
    get = (url: string, params: object) => {
         return axios.get(url, { params: params })
             .then(response => {
@@ -15,4 +15,4 @@ class APIRequest {
     }
 }
 
-export default APIRequest;
+export default APIRequestUtil;

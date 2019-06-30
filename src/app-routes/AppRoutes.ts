@@ -1,11 +1,11 @@
 import express from 'express';
-import DailyExchangeRateController from './../daily-exchange-rates/DailyExchangeRate.controller';
+import DailyExchangeRateController from './../currency-information/CurrencyInformation.controller';
 
 const router = express.Router();
 
 router.route('/test').get((req, res) => {
     let currencyInformationController = new DailyExchangeRateController();
-    currencyInformationController.storeDailyCurrencyCodes();
+    currencyInformationController.getLatestExchangeRates('USD');
     return res.send(`Success!`);
 });
 

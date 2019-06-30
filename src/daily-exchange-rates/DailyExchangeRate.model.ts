@@ -28,6 +28,14 @@ class DailyExchangeRate {
         });
     }
 
+    getByBase = async(base: string) => {
+        let exchangeRates: any;
+        await DailyExchangeRateSchema.findOne({base_currency: base}).then(data => {
+            exchangeRates = data;
+        });
+        return exchangeRates;
+    }
+
     archive = (currencyRate: any) => {
         // get currency rate by id
     }

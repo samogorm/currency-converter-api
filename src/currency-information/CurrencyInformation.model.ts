@@ -41,6 +41,21 @@ class CurrencyInformation {
         
         return currencyInformation;
     }
+
+    /**
+     * Gets the currency information by the code.
+     * 
+     * @param {string} code the currency code.
+     */
+    getByCode = async(code: string) => {
+        let currencyInformation: any;
+        await CurrencyInformationSchema.find({code: code})
+            .then(data => {
+                currencyInformation = data;
+            });
+
+        return currencyInformation;
+    }
 }
 
 export default CurrencyInformation;

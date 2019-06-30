@@ -7,7 +7,6 @@ const CurrencyInformationSchema = new Schema({
     currency: String,
     code: String,
     number: String,
-    country_flag: String,
     archived: Boolean,
     created_at: {
         type: Date,

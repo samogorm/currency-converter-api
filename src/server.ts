@@ -1,5 +1,8 @@
+require('dotenv').config();
 import express from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import routes from './app-routes/AppRoutes';
 
 /**
  * Logs the requests made to the API in the console.
@@ -21,6 +24,9 @@ const app = express();
 
 app.use(logMiddleware);
 app.use(bodyParser.json());
+app.use('/api/v1', routes);
+
+mongoose.connect(process.env.MONGO_LOCAL_CONN_URL || '', { useNewUrlParser: true });
 
 let port = process.env.APP_PORT || 5000;
 

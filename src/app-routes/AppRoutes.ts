@@ -1,12 +1,13 @@
 import express from 'express';
-import DailyExchangeRateController from './../currency-information/CurrencyInformation.controller';
+import CurrencyInformationController from './../currency-information/CurrencyInformation.controller';
 
 const router = express.Router();
 
-router.route('/test').get((req, res) => {
-    let currencyInformationController = new DailyExchangeRateController();
-    currencyInformationController.getLatestExchangeRates('USD');
-    return res.send(`Success!`);
+router.route('/latestexchangerates').get(async(req, res) => {
+    let currencyInformationController = new CurrencyInformationController();
+    let data = await currencyInformationController.getLatestExchangeRates('EUR');
+    console.log("The data: ", data);
+    return res.send(data);
 });
 
 export default router;

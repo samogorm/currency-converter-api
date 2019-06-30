@@ -29,16 +29,18 @@ class CurrencyInformationController {
 
     getLatestExchangeRates = async(code: string) => {
         const currencyInformation: any = new CurrencyInformation();
-        let latestCurrencyInformation = currencyInformation.getByCode(code);
+        let latestCurrencyInformation = await currencyInformation.getByCode(code);
 
         const dailyExchangeRate = new DailyExchangeRate();
-        let latestExchangeRates = dailyExchangeRate.getByBase(code);
+        let latestExchangeRates = await dailyExchangeRate.getByBase(code);
 
-        console.log("The exchange rates for " + code + ": ", await latestExchangeRates);
+        // TODO: combine these together properly.
+        let data = {
+            currency_information: latestCurrencyInformation,
+            exchange_rates: latestExchangeRates
+        };
 
-        console.log("The currency information for " + code + ": ", await latestCurrencyInformation);
-
-
+        return data;
     }
 }
 

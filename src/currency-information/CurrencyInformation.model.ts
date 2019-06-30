@@ -49,7 +49,7 @@ class CurrencyInformation {
      */
     getByCode = async(code: string) => {
         let currencyInformation: any;
-        await CurrencyInformationSchema.find({code: code})
+        await CurrencyInformationSchema.findOne({code: code})
             .then(data => {
                 currencyInformation = data;
             });

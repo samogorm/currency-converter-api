@@ -3,7 +3,7 @@ import CurrencyInformationController from './../currency-information/CurrencyInf
 
 const router = express.Router();
 
-router.route('/latestexchangerates').get(async(req, res) => {
+router.route('/exchangerates').get(async(req, res) => {
     let currencyInformationController = new CurrencyInformationController();
     let data = await currencyInformationController.getLatestExchangeRates(req.query.base);
   

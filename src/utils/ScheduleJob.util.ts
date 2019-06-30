@@ -7,9 +7,7 @@ class ScheduleJobUtil {
      */
     runEvery = (minutes: number = 1, jobToRun: Function) => {
         let milliseconds = minutes * 60 * 1000;
-        setInterval(function () {
-            jobToRun();
-        }, milliseconds)
+        setInterval(() => jobToRun(), milliseconds);
     }
 }
 

@@ -5,6 +5,11 @@ import {StaticCurrencyInformation} from './../currency-information/StaticCurrenc
 class DailyExchangeRateController {
     currencyInformation = StaticCurrencyInformation;
 
+    /**
+     * This will iterate over the available currency information
+     * and then query each currency code to get the latest exchange
+     * rates each day.
+     */
     storeDailyCurrencyCodes = async() => {
         await this.currencyInformation.forEach(async currency => {
             let exchangeRates = await this.getExchangeRatesFromAPI(currency.code);

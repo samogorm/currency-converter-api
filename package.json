@@ -41,5 +41,9 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.5",
+    "cors": "^2.8.5"
   }
 }

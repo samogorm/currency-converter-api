@@ -7,7 +7,14 @@ router.route('/exchangerates').get(async(req, res) => {
     let currencyInformationController = new CurrencyInformationController();
     let data = await currencyInformationController.getLatestExchangeRates(req.query.base);
   
-    return res.send(data);
+    return res.status(200).json({ message: `Successfully retrieved the exchange rates for: ${req.query.base}`, data: data });
 });
+
+router.route('/currencyinformation').get(async(req, res) => {
+    let currencyInformationController = new CurrencyInformationController();
+    let data = await currencyInformationController.getCurrencyInformation();
+
+    return res.status(200).json({ message: `Successfully retrieved currency information`, data: data });
+})
 
 export default router;

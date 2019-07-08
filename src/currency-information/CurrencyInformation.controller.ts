@@ -33,8 +33,7 @@ class CurrencyInformationController {
 
         const dailyExchangeRate = new DailyExchangeRate();
         let latestExchangeRates = await dailyExchangeRate.getByBase(code);
-
-        // TODO: combine these together properly.
+        
         let data = {
             currency_information: latestCurrencyInformation,
             exchange_rates: latestExchangeRates

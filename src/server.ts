@@ -1,5 +1,6 @@
 require('dotenv').config();
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './app-routes/AppRoutes';
@@ -27,14 +28,15 @@ const logMiddleware = (request: express.Request, response: express.Response, nex
  * grab the latest/daily exchange rates.
  */
 const scheduleGetDailyExchangeRates = () => {
-    let sheduleJob = new ScheduleJobUtil();
+    let scheduleJob = new ScheduleJobUtil();
     let dailyExchangeRate = new DailyExchangeRateController();
     let dayInMinutes = 1440;
 
-    sheduleJob.runEvery(dayInMinutes, dailyExchangeRate.storeDailyCurrencyCodes);
+    scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.storeDailyCurrencyCodes);
 }
 scheduleGetDailyExchangeRates();
 
+app.use(cors());
 app.use(logMiddleware);
 app.use(bodyParser.json());
 app.use('/api/v1', routes);

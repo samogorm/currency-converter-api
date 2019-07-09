@@ -1,5 +1,6 @@
 import express from 'express';
 import CurrencyInformationController from './../currency-information/CurrencyInformation.controller';
+import DailyExchangeRateController from './../daily-exchange-rates/DailyExchangeRate.controller';
 
 const router = express.Router();
 
@@ -15,6 +16,6 @@ router.route('/currencyinformation').get(async(req, res) => {
     let data = await currencyInformationController.getCurrencyInformation();
 
     return res.status(200).json({ message: `Successfully retrieved currency information`, data: data });
-})
+});
 
 export default router;

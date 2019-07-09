@@ -36,6 +36,19 @@ const scheduleGetDailyExchangeRates = () => {
 }
 scheduleGetDailyExchangeRates();
 
+/**
+ * This is ran every 3 days. It will remove any exchange rate
+ * entries that are less than or equal to yesterday.
+ */
+const scheduleRemoveDailyExchangeRates = () => {
+    let scheduleJob = new ScheduleJobUtil();
+    let dailyExchangeRate = new DailyExchangeRateController();
+    let dayInMinutes = 4320;
+
+    scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.removeExchangeRates);
+}
+scheduleRemoveDailyExchangeRates();
+
 app.use(cors());
 app.use(logMiddleware);
 app.use(bodyParser.json());

@@ -1,9 +1,7 @@
 import DailyExchangeRateSchema from './DailyExchangeRate.schema';
+import { fstat } from 'fs';
 
 class DailyExchangeRate {
-    getById = () => {
-
-    }
 
     /**
      * Stores a currency rate to our database.
@@ -28,6 +26,11 @@ class DailyExchangeRate {
         });
     }
 
+    /**
+     * Gets exchange rates for the base currency.
+     * 
+     * @param {String} base the base currency code.
+     */
     getByBase = async(base: string) => {
         let exchangeRates: any;
         await DailyExchangeRateSchema.findOne({base_currency: base}).then(data => {
@@ -36,8 +39,22 @@ class DailyExchangeRate {
         return exchangeRates;
     }
 
-    archive = (currencyRate: any) => {
-        // get currency rate by id
+    /**
+     * Removes old entries from the database if they are older
+     * than yesterday.
+     * 
+     * If we have only ONE set of data for a specific day, and that 
+     * data is 3 days old or older, we will keep that last record set.
+     */
+    removeOldEntries = async() => {
+        let today = new Date();
+        let yesterday = new Date().setDate(today.getDate() - 1);
+       
+        return await DailyExchangeRateSchema.find({datetime_retrieved: {$lte: yesterday}}).remove(err => {
+            if(err) return false;
+
+            return true;
+        });
     }
 
 }

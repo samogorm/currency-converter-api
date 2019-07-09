@@ -48,6 +48,16 @@ class DailyExchangeRateController {
         const dailyExchangeRate = new DailyExchangeRateModel();
         return await dailyExchangeRate.store(exchangeRates);
     }
+
+    /**
+     * Removed old/stale exhange rate entries to save storage on the db.
+     * 
+     * @param {Number} days the number of days in minutes.
+     */
+    removeExchangeRates = async() => {
+        const dailyExchangeRate = new DailyExchangeRateModel();
+        return await dailyExchangeRate.removeOldEntries();
+    }
 }
 
 export default DailyExchangeRateController;

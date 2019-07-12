@@ -1,0 +1,16 @@
+{
+    "apps": [
+        {
+            "name": "currency-converter-api",
+            "script": "src/server.ts",
+            "instances": 1,
+            "interpreter": "node_modules/.bin/ts-node",
+            "node_args": ["--require=tsconfig.json"
+            ],
+            "env": {
+                "NODE_ENV": "production",
+                "PORT": "3000"
+            }
+        }
+    ]
+}

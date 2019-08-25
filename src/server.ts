@@ -43,9 +43,9 @@ scheduleGetDailyExchangeRates();
 const scheduleRemoveDailyExchangeRates = () => {
     let scheduleJob = new ScheduleJobUtil();
     let dailyExchangeRate = new DailyExchangeRateController();
-    let dayInMinutes = 4320;
+    let nDaysInMins = 1440 * 3;
 
-    scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.removeExchangeRates);
+    scheduleJob.runEvery(nDaysInMins, dailyExchangeRate.removeExchangeRates);
 }
 scheduleRemoveDailyExchangeRates();
 

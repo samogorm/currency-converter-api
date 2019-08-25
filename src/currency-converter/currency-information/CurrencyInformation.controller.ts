@@ -1,5 +1,5 @@
 import CurrencyInformation from "./CurrencyInformation.model";
-import DailyExchangeRate from "./../daily-exchange-rates/DailyExchangeRate.model";
+import DailyExchangeRate from "../daily-exchange-rates/DailyExchangeRate.model";
 import { StaticCurrencyInformation } from "./StaticCurrencyInformation";
 
 class CurrencyInformationController {

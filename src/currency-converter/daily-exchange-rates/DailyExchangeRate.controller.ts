@@ -1,6 +1,6 @@
-import APIRequestUtil from './../utils/APIRequest.util';
+import APIRequestUtil from '../../utils/APIRequest.util';
 import DailyExchangeRateModel from './DailyExchangeRate.model';
-import {StaticCurrencyInformation} from './../currency-information/StaticCurrencyInformation';
+import {StaticCurrencyInformation} from '../currency-information/StaticCurrencyInformation';
 import CurrencyInformationController from '../currency-information/CurrencyInformation.controller';
 
 class DailyExchangeRateController {

@@ -4,8 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './app-routes/AppRoutes';
-import ScheduleJobUtil from './utils/ScheduleJob.util';
-import DailyExchangeRateController from './daily-exchange-rates/DailyExchangeRate.controller';
+import {scheduleGetDailyExchangeRates, scheduleRemoveDailyExchangeRates} from './currency-converter/jobs';
 
 const app = express();
 
@@ -23,30 +22,8 @@ const logMiddleware = (request: express.Request, response: express.Response, nex
     next();
 }
 
-/**
- * This will invoke a cron job to be ran every day to 
- * grab the latest/daily exchange rates.
- */
-const scheduleGetDailyExchangeRates = () => {
-    let scheduleJob = new ScheduleJobUtil();
-    let dailyExchangeRate = new DailyExchangeRateController();
-    let dayInMinutes = 1440;
-
-    scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.storeDailyCurrencyCodes);
-}
+/* Job List */
 scheduleGetDailyExchangeRates();
-
-/**
- * This is ran every 3 days. It will remove any exchange rate
- * entries that are less than or equal to yesterday.
- */
-const scheduleRemoveDailyExchangeRates = () => {
-    let scheduleJob = new ScheduleJobUtil();
-    let dailyExchangeRate = new DailyExchangeRateController();
-    let nDaysInMins = 1440 * 3;
-
-    scheduleJob.runEvery(nDaysInMins, dailyExchangeRate.removeExchangeRates);
-}
 scheduleRemoveDailyExchangeRates();
 
 app.use(cors());

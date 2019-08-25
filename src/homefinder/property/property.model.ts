@@ -32,7 +32,6 @@ class Property {
      */
     getAll = async (filters: any) => {
         let properties: any;
-        console.log("The filters: ", filters);
        
         await PropertySchema.find(JSON.parse(filters)).then(data => {
             properties = data;

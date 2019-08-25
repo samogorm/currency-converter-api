@@ -23,4 +23,4 @@ const PropterySchema: Schema = new Schema({
     }
 });
 
-export default mongoose.model<IProperty>('Property', PropterySchema);
+export default mongoose.model<IProperty>('Properties', PropterySchema);

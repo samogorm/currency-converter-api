@@ -1,6 +1,7 @@
 import express from 'express';
 import CurrencyInformationController from '../currency-converter/currency-information/CurrencyInformation.controller';
 import DailyExchangeRateController from '../currency-converter/daily-exchange-rates/DailyExchangeRate.controller';
+import PropertyController from '../homefinder/property/property.controller';
 
 const router = express.Router();
 
@@ -26,9 +27,10 @@ router.route(`/${APPS.currencyConverter}/currencyinformation`).get(async(req, re
 
 /** Homefinder Routes */
 router.route(`/${APPS.homefinder}/properties`).get(async(req, res) => {
-    console.log("Route for the homefinder apis.");
+    let propertyController = new PropertyController();
+    let data = await propertyController.getProperties(req.query.filters);
 
-    return res.send("hello bitch");
+    return res.status(200).json({ message: `Sucessfully retrieved properties`, data: data});
 })
 
 export default router;

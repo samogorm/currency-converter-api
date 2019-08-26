@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/samogorm/currency-converter-api#readme",
   "devDependencies": {
+    "@types/algoliasearch": "^3.30.17",
     "@types/express": "^4.17.0",
     "@types/jest": "^24.0.15",
     "@types/mongoose": "^5.5.6",
@@ -44,6 +45,7 @@
   },
   "dependencies": {
     "@types/cors": "^2.8.5",
+    "algoliasearch": "^3.33.0",
     "cors": "^2.8.5"
   }
 }

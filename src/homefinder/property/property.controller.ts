@@ -9,7 +9,7 @@ class PropertyController {
     getProperties = async (filters: any) => {
         let propertyModel = new Property();
 
-        return await propertyModel.getAll(filters);
+        return await propertyModel.search(filters);
     }
 
     /**

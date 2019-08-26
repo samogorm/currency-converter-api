@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import { IProperty } from './property.interface';
 
-const PropterySchema: Schema = new Schema({
+const PropertySchema: Schema = new Schema({
     name: {
         type: String,
         required: true
@@ -23,4 +23,6 @@ const PropterySchema: Schema = new Schema({
     }
 });
 
-export default mongoose.model<IProperty>('Properties', PropterySchema);
+PropertySchema.index({ '$**': 'text' });
+
+export default mongoose.model<IProperty>('Properties', PropertySchema);

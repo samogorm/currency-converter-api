@@ -28,7 +28,7 @@ router.route(`/${APPS.currencyConverter}/currencyinformation`).get(async(req, re
 /** Homefinder Routes */
 router.route(`/${APPS.homefinder}/properties`).get(async(req, res) => {
     let propertyController = new PropertyController();
-    let data = await propertyController.getProperties(req.query.filters);
+    let data = await propertyController.getProperties(req.query.search);
 
     return res.status(200).json({ message: `Sucessfully retrieved properties`, data: data});
 })

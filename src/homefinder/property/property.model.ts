@@ -1,6 +1,8 @@
 import PropertySchema from './property.schema';
 import { IProperty } from './property.interface';
 
+import { algoliaSearch } from './../../utils/Algolia';
+
 class Property {
 
     /**
@@ -24,6 +26,20 @@ class Property {
     }
 
     /**
+     * Search the algolia indices for the given term.
+     * 
+     * @var {string} term The term to find.
+     * 
+     * @return {Array} properties An array of property data.
+     */
+    search = async(term: any) => {
+        let properties: any;
+        properties = await algoliaSearch(term).then(results => properties = results);
+
+        return properties;
+    }
+
+    /**
      * Gets all properties.
      * 
      * If filters are provided it will return the filtered results.
@@ -33,9 +49,13 @@ class Property {
     getAll = async (filters: any) => {
         let properties: any;
        
-        await PropertySchema.find(JSON.parse(filters)).then(data => {
-            properties = data;
-        });
+        await PropertySchema.find({
+            $text: {
+                $search: filters,
+                $caseSensitive: false,
+                $diacriticSensitive: false
+            }
+        }).then(data => properties = data);
         return properties;
     }
 }

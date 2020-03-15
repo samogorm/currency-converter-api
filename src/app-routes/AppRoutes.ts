@@ -4,7 +4,7 @@ import CurrencyInformationController from '../currency-converter/currency-inform
 const router = express.Router();
 
 const APPS = {
-  currencyConverter: 'currency-converter',
+  currencyConverter: 'currency_converter',
   homefinder: 'homefinder'
 };
 

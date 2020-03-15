@@ -8,11 +8,11 @@ const ONE_DAY_IN_MINS = 1440;
  * grab the latest/daily exchange rates.
  */
 export const scheduleGetDailyExchangeRates = () => {
-    let scheduleJob = new ScheduleJobUtil();
-    let dailyExchangeRate = new DailyExchangeRateController();
-    let dayInMinutes = ONE_DAY_IN_MINS;
+  let scheduleJob = new ScheduleJobUtil();
+  let dailyExchangeRate = new DailyExchangeRateController();
+  let dayInMinutes = ONE_DAY_IN_MINS;
 
-    scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.storeDailyCurrencyCodes);
+  scheduleJob.runEvery(dayInMinutes, dailyExchangeRate.storeDailyCurrencyCodes);
 }
 
 /**
@@ -20,9 +20,9 @@ export const scheduleGetDailyExchangeRates = () => {
  * entries that are less than or equal to yesterday.
  */
 export const scheduleRemoveDailyExchangeRates = () => {
-    let scheduleJob = new ScheduleJobUtil();
-    let dailyExchangeRate = new DailyExchangeRateController();
-    let nDaysInMins = ONE_DAY_IN_MINS * 3;
+  let scheduleJob = new ScheduleJobUtil();
+  let dailyExchangeRate = new DailyExchangeRateController();
+  let nDaysInMins = ONE_DAY_IN_MINS * 3;
 
-    scheduleJob.runEvery(nDaysInMins, dailyExchangeRate.removeExchangeRates);
+  scheduleJob.runEvery(nDaysInMins, dailyExchangeRate.removeExchangeRates);
 }
